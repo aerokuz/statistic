@@ -1,0 +1,14 @@
+# Версия docker-compose
+version: '3'
+# Список наших сервисов (контейнеров)
+services:
+# Сервис сбора метрик хоста
+    node-exporter:
+        image: prom/node-exporter
+        restart: always
+        ports:
+            - 9100:9100
+        volumes:
+            - /proc:/host/proc:ro
+            - /sys:/host/sys:ro
+            - /:/rootfs:ro
