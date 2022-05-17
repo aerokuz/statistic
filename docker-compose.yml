@@ -1,0 +1,14 @@
+# Версия docker-compose
+version: '3'
+# Список наших сервисов (контейнеров)
+services:
+#Сервис сбора метрик MySQL
+    mysql-exporter:
+        image: prom/mysqld-exporter
+        container_name: mysql-exporter
+        restart: always
+        environment:
+        - DATA_SOURCE_NAME=${MYSQL_USER_EXPORTER}:${MYSQL_PASSWORD_EXPORTER}@(mysql:3306)/
+        ports:
+            - 9104:9104
+    
